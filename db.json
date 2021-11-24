@@ -1,3 +1,19 @@
 {
-  "contacts": []
+  "contacts": [
+    {
+      "name": "Artem",
+      "number": "122345",
+      "id": "150ee9a7-3ad2-4d6c-9804-7dac06b387ad"
+    },
+    {
+      "name": "Nick",
+      "number": "1231312",
+      "id": "4004663e-2c23-4a0f-aaa4-a637a07ab3a2"
+    },
+    {
+      "name": "fib",
+      "number": "1123581321",
+      "id": "0290bb61-8c63-42f9-82ef-368eb1ff4032"
+    }
+  ]
 }
