@@ -12,7 +12,7 @@ export default function App() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    if (isLoading) dispatch(fetchItems());
+    if (!isLoading) dispatch(fetchItems());
   }, [dispatch, isLoading]);
 
   const buble = {
