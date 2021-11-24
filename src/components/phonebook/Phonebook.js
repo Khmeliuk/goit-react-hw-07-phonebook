@@ -3,9 +3,9 @@ import Section from "../section/Section";
 import s from "./Phonebook.module.css";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/action";
+import { addContact } from "../../redux/operation";
 
-export default function Phonebook({}) {
+export default function Phonebook() {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [id, setId] = useState("");
@@ -17,7 +17,6 @@ export default function Phonebook({}) {
       case "name":
         setName(e.currentTarget.value);
         setId(uuidv4());
-
         break;
       case "number":
         setNumber(e.currentTarget.value);

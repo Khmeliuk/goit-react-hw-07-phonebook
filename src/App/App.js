@@ -2,57 +2,39 @@ import Section from "../components/section/Section";
 import ContactList from "../components/phonebook/contactList/ContactList";
 import Phonebook from "../components/phonebook/Phonebook";
 import Filter from "../components/phonebook/filter/Filter";
+import ReactLoading from "react-loading";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { fetchItems } from "../redux/operation";
 
 export default function App() {
-  // const [contacts, setContacts] = useState(
-  //   JSON.parse(window.localStorage.getItem("contacts")) ?? [
-  //     { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
-  //     { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
-  //     { id: "id-3", name: "Eden Clements", number: "645-17-79" },
-  //     { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
-  //   ]
-  // );
+  const isLoading = useSelector((state) => state.contacts.loading);
 
-  // const [filter, useFilter] = useState("");
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (isLoading) dispatch(fetchItems());
+  }, [isLoading]);
 
-  // function toSubmit(data) {
-  //   if (contacts.find((contact) => contact.name === data.name)) {
-  //     alert(`${data.name} is already in contact`);
-  //   } else setContacts((prevState) => [...prevState, data]);
-  // }
-
-  // function handlerFilter(e) {
-  //   // eslint-disable-next-line react-hooks/rules-of-hooks
-  //   useFilter(e.currentTarget.value);
-  // }
-
-  // function onButtonDelete(id) {
-  //   setContacts((prevState) => {
-  //     return prevState.filter((contact) => id !== contact.id);
-  //   });
-  // }
-
-  // function getFilterContact() {
-  //   const filterNormalized = filter.toLowerCase();
-  //   return contacts.filter((contact) =>
-  //     contact.name.toLowerCase().includes(filterNormalized)
-  //   );
-  // }
+  const buble = {
+    prop: "spinningBubbles",
+    name: "SpinningBubbles",
+  };
 
   return (
     <div>
-      <Phonebook
-      // onSubmit={toSubmit}
-      />
+      <Phonebook />
+
       <Section title="Contacts">
-        <Filter
-        // value={filter} onChange={handlerFilter}
-        />
-        <ContactList
-        // data={getFilterContact()}
-        // onDeleteButton={onButtonDelete}
-        />
+        <Filter />
+        <ContactList />
+        {isLoading && (
+          <ReactLoading
+            type={buble.prop}
+            color={"#2b2c6d"}
+            height={100}
+            width={100}
+          />
+        )}
       </Section>
     </div>
   );

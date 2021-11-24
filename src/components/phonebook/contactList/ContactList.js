@@ -1,28 +1,15 @@
 import s from "./ContactList.module.css";
-
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { deleteContact } from "../../../redux/action";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteContact, fetchItems } from "../../../redux/operation";
 import { useEffect } from "react";
+import { getFilterContact } from "../../../contacts-selectors";
+
 export default function ContactList() {
+  const filterContacts = useSelector(getFilterContact);
   const dispatch = useDispatch();
-
-  const value = useSelector((state) => state.contacts.filter);
-  const contact = useSelector((state) => state.contacts.items);
-  const filterContacts = getFilterContact();
-
-  useEffect(() => {
-    window.localStorage.setItem("contacts", JSON.stringify(contact));
-  }, [contact]);
-
-  function getFilterContact() {
-    const filterNormalized = value.toLowerCase();
-    return contact.filter((contact) =>
-      contact.name.toLowerCase().includes(filterNormalized)
-    );
-  }
-  getFilterContact();
-
+  // useEffect(() => {
+  //   dispatch(fetchItems());
+  // }, [deleteContact]);
   return (
     <ul className={s.contacts}>
       {filterContacts.map((contact) => {
@@ -42,13 +29,3 @@ export default function ContactList() {
     </ul>
   );
 }
-
-// ContactList.prototype = {
-//   prop: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.number,
-//       name: PropTypes.string,
-//       number: PropTypes.number,
-//     })
-//   ).isRequired,
-// };
