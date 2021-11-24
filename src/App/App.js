@@ -13,7 +13,7 @@ export default function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (isLoading) dispatch(fetchItems());
-  }, [isLoading]);
+  }, [dispatch, isLoading]);
 
   const buble = {
     prop: "spinningBubbles",

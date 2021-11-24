@@ -1,15 +1,12 @@
 import s from "./ContactList.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteContact, fetchItems } from "../../../redux/operation";
-import { useEffect } from "react";
+import { deleteContact } from "../../../redux/operation";
 import { getFilterContact } from "../../../contacts-selectors";
 
 export default function ContactList() {
   const filterContacts = useSelector(getFilterContact);
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(fetchItems());
-  // }, [deleteContact]);
+
   return (
     <ul className={s.contacts}>
       {filterContacts.map((contact) => {
